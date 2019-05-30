@@ -1,6 +1,5 @@
 package com.service;
 
-import com.bean.EmpresaBean;
 import com.bean.ReplyBean;
 import com.bean.UsuarioBean;
 import com.google.gson.Gson;
@@ -66,17 +65,10 @@ public class UsuarioService {
         ReplyBean oReplyBean;
         ArrayList respuesta = new ArrayList();
         UsuarioBean oUsuarioBean;
-        EmpresaBean oEmpresaBean;
         oUsuarioBean = (UsuarioBean) oRequest.getSession().getAttribute("user");
-        oEmpresaBean = (EmpresaBean) oRequest.getSession().getAttribute("ejercicio");
         if (oUsuarioBean != null) {
             Gson oGson = (new GsonBuilder()).excludeFieldsWithoutExposeAnnotation().create();
-            if (oEmpresaBean != null) {
-                respuesta.add(oEmpresaBean);
-                respuesta.add(oUsuarioBean);
-            } else {
-                respuesta.add(oUsuarioBean);
-            }
+            respuesta.add(oUsuarioBean);
             oReplyBean = new ReplyBean(200, oGson.toJson(respuesta));
         } else {
             oReplyBean = new ReplyBean(401, "No active session");
