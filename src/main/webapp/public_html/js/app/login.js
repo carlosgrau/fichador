@@ -14,21 +14,16 @@ moduleLogin.controller('loginController', ['$scope', '$http', 'sessionService', 
                 $scope.status = response.status;
                 $scope.ajaxDataUsuarios = response.data.message;
                 if (response.status === 200) {
+                    sessionService.setTrabajador(response.data.message.trabajador)
                     if (response.data.status === 401) {
                         $scope.mensaje = false;
                         $scope.mensajeError = true;
                     } else {
                         $scope.mensajeError = false;
-                       /* sessionService.setSessionActive();
-                        sessionService.setUserName(response.data.message.nombre + ' ' + response.data.message.ape1);
-                        sessionService.setUserId(response.data.message.id);
-                        $scope.idUsuariologeado= sessionService.getUserId();
-                        $scope.usuariologeado = sessionService.getUserName();
-                        sessionService.setTipoUserId(response.data.message.obj_tipoUsuario.id);*/
                         $scope.mensaje = true;
                     }
                 }
-                $location.url('/empresa');
+                $location.url('/home');
             }, function (response) {
                 $scope.mensajeError = true;
                 $scope.ajaxDataUsuarios = response.data.message || 'Request failed';

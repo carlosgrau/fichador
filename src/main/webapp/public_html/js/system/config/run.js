@@ -1,5 +1,5 @@
-SuportWeb4All.run(['$rootScope', 'sessionService', '$location', '$http', 'countcarritoService',
-    function ($rootScope, oSessionService, $location, $http, countcarritoService) {
+fichador.run(['$rootScope', 'sessionService', '$location', '$http',
+    function ($rootScope, oSessionService, $location, $http) {
         $rootScope.$on("$routeChangeStart", function (event, next, current) {
             var nextUrl = next.$$route.originalPath;
             var host ='http://localhost:8081/';
@@ -9,32 +9,20 @@ SuportWeb4All.run(['$rootScope', 'sessionService', '$location', '$http', 'countc
             }).then(function (response) {
                 if (response.data.status === 200) {
                     oSessionService.setSessionActive();
-                    if (response.data.message[0].empresa !== undefined) {
-                        oSessionService.setEmpresa(response.data.message[0].empresa);
-                    } else {
-                        oSessionService.setEmpresa(0);
-                    }
-                    if (response.data.message[0].loginCli !== undefined) {
-                        oSessionService.setUserName(response.data.message[0].loginCli);
-                    } else {
-                        oSessionService.setUserName(response.data.message[1].loginCli);
-                    }
-//                    oSessionService.setUserId(response.data.message.id);
-//                    oSessionService.setTipoUserId(response.data.message.obj_tipoUsuario.id);
+                   
                 } else {
                     oSessionService.setSessionInactive;
-                    if (nextUrl !== '/' && nextUrl !== '/home' && nextUrl !== '/login') {
+                    if (nextUrl !== '/' && nextUrl !== '/home') {
                         $location.path("/");
                     }
                 }
             }, function (response) {
                 oSessionService.setSessionInactive;
-                if (nextUrl !== '/' && nextUrl !== '/home' && nextUrl !== '/login') {
+                if (nextUrl !== '/' && nextUrl !== '/home') {
                     $location.path("/");
                 }
 
             });
-            countcarritoService.updateCarrito();
         });
     }]);
     

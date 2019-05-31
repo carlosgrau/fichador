@@ -1,25 +1,9 @@
 'use strict';
 moduleService.service('sessionService', ['$location', function ($location) {
         var isSessionActive = false;
-        var userName = "";
-        var userId = '';
-        var tipoUserId = '';
-        var carrito = 0;
+        var trabajador = '';
         var observerCallbacks = [];
-        var empresaEjercicio;
         return {
-            getUserName: function () {
-                return userName;
-            },
-            setUserName: function (name) {
-                userName = name;
-            },
-            getEmpresa: function () {
-                return empresaEjercicio;
-            },
-            setEmpresa: function (empresa) {
-                empresaEjercicio = empresa;
-            },
             isSessionActive: function () {
 
                 return isSessionActive;
@@ -30,28 +14,11 @@ moduleService.service('sessionService', ['$location', function ($location) {
             setSessionInactive: function (name) {
                 isSessionActive = false;
             },
-            getUserId: function () {
-                return userId;
+            getTrabajador: function () {
+                return trabajador;
             },
-            setUserId: function (id) {
-                userId = id;
-            },
-            getTipoUserId: function () {
-                return tipoUserId;
-            },
-            setTipoUserId: function (idTipoUsuario) {
-                tipoUserId = idTipoUsuario;
-            },
-            setCountCarrito: function (cantidad) {
-                carrito = cantidad;
-                //Para que sirve el callback()
-                //https://www.quora.com/What-is-the-call-back-function-in-AngularJS
-                angular.forEach(observerCallbacks, function (callback) {
-                    callback();
-                });
-            },
-            getCountCarrito: function () {
-                return carrito;
+            setTrabajador: function (id) {
+                trabajador = id;
             },
             registerObserverCallback: function (callback) {
                 observerCallbacks.push(callback);

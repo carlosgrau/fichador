@@ -1,170 +1,42 @@
-@import url("https://fonts.googleapis.com/css?family=Francois+One");
-* {
-    box-sizing: border-box;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
 }
 
-.topNav {
-    width: 100%;
-    float: left;
-    position: fixed;
-    z-index: 10000;
+.big-button {
+  border-radius: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 4vh;
+  color: orangered;
+  box-shadow: 0 5px 5px rgba(50, 50, 93, 0.2), 0 5px 5px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 350ms;
+  transition: transform 350ms;
+  cursor: pointer;
 }
-.topNav .navToggle {
-    float: left;
-    width: 50px;
-    height: 50px;
-    position: fixed;
-    right: 25px;
-    z-index: 100000;
-    top: 5px;
-    cursor: pointer;
+.big-button:hover {
+  box-shadow: 0 15px 35px rgba(50, 50, 93, 0.5), 0 5px 15px rgba(0, 0, 0, 0.5);
+  transform: translateY(-5px);
 }
-.topNav .navToggle span {
-    background: -webkit-linear-gradient(left, #76CDFF, #f64655);
-    width: 100%;
-    float: right;
-    height: 5px;
-    margin: 5px 0px 5px 0px;
-    transition: all 0.2s ease;
-    -webkit-transition: all 0.2s ease;
-    position: absolute;
-    right: 0;
+.big-button:active {
+  box-shadow: 0 5px 5px rgba(50, 50, 93, 0.2), 0 5px 5px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
 }
-.topNav .navToggle span:nth-child(1) {
-    width: 80%;
-    float: right;
+.big-button .big-button__title {
+  font-size: 7vh;
+  text-align: center;
+  transition: transform 350ms;
+  user-select: none;
 }
-.topNav .navToggle span:nth-child(2) {
-    left: 0;
-    top: 15px;
+.big-button:hover .big-button__title {
+  transform: translateY(-10px);
 }
-.topNav .navToggle span:nth-child(3) {
-    top: 30px;
-    float: right;
-}
-.topNav .navToggle:hover span:nth-child(1) {
-    width: 90%;
-}
-.topNav .navToggle:hover span:nth-child(2) {
-    width: 90%;
-}
-.topNav .navToggle:hover span:nth-child(3) {
-    width: 90%;
-}
-.topNav .navToggle.active span:nth-child(1) {
-    width: 100%;
-    transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-    top: 15px;
-}
-.topNav .navToggle.active span:nth-child(2) {
-    width: 80%;
-    opacity: 0;
-}
-.topNav .navToggle.active span:nth-child(3) {
-    width: 100%;
-    transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
-    top: 15px;
-}
-
-.navLinks {
-    float: left;
-    background: #fff;
-    width: 200px;
-    height: 100%;
-    position: fixed;
-    z-index: 1000;
-    right: -220px;
-    top: 0px;
-    float: right;
-    padding-top: 70px;
-    transition: all 0.4s ease;
-    -webkit-transition: all 0.4s ease;
-    transition-delay: 0.3s;
-    -webkit-transition-delay: 0.3s;
-}
-.navLinks.active {
-    right: 0;
-    transition: all 0.2s ease;
-    -webkit-transition: all 0.2s ease;
-    transition-delay: 0.3s;
-    -webkit-transition-delay: 0.3s;
-}
-.navLinks a {
-    color: #333;
-    font-family: "Francois One", sans-serif;
-    width: auto;
-    clear: both;
-    float: left;
-    padding: 20px;
-    padding-left: 35px;
-    position: relative;
-    cursor: pointer;
-}
-.navLinks a:after {
-    content: '';
-    float: left;
-    width: 15px;
-    height: 15px;
-    left: 10px;
-    border-radius: 500px;
-    top: 50%;
-    margin-top: -7px;
-    background: #ccc;
-    transition: all 0.2s ease;
-    -webkit-transition: all 0.2s ease;
-    position: absolute;
-    opacity: 0;
-}
-.navLinks a:hover:after {
-    opacity: 1;
-}
-.navLinks:after {
-    content: '';
-    float: left;
-    width: 5px;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background: -webkit-linear-gradient(bottom, #76CDFF, #f64655);
-    position: absolute;
-}
-
-
-@media screen and (min-width: 1200px) {
-    .bottomPart h2 {
-        font-size: 55pt !important;
-        line-height: 60pt !important;
-    }
-    .bottomPart p {
-        font-size: 14pt;
-        width: 650px !important;
-    }
-}
-@media screen and (max-width: 1080px) {
-    .bottomPart .floatingText {
-        top: 40% !important;
-    }
-    .bottomPart.reverse .floatingText {
-        top: 20% !important;
-    }
-}
-@media screen and (max-width: 800px) {
-    .bottomPart img {
-        display: none !important;
-    }
-    .bottomPart .floatingText {
-        width: 100% !important;
-        position: relative !important;
-        float: left !important;
-    }
-    .bottomPart .floatingText h2, .bottomPart .floatingText p {
-        float: left !important;
-        width: 100% !important;
-    }
-
-    .pageWrapper h1 span {
-        max-height: 50px !important;
-    }
+.big-button .big-button__icon {
+  color: orangered;
+  font-size: 15vh;
 }

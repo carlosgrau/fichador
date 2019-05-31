@@ -1,67 +1,39 @@
-<!--<header-component></header-component>-->
-
-<head>
-    <link href="/suportWebClient/public_html/css/home-page.css" rel="stylesheet" type="text/css" />
-</head>
-<section ng-show="ocultar">
-    <ul id='services'>
-        <li>
-            <a href="cliente/plist">
-                <div class='entypo-facebook'><i class="fas fa-users"></i></div>
-                <span>CLIENTE
-                </span>
-            </a>
-        </li>
-        <li>
-            <a href="albaran/plist">
-                <div class='entypo-twitter'><i class="fas fa-file-invoice"></i></div>
-                <span>ALBARAN</span>
-            </a>
-        </li>
-        <li>
-            <a href="factura/plist">
-                <div class='entypo-linkedin'><i class="fas fa-file-invoice-dollar"></i></div>
-                <span>FACTURA</span>
-            </a>
-        </li>
-        <li>
-                <a href="common/home">
-                    <div class='entypo-gplus'><i class="fas fa-home"></i></div>
-                    <span>INICIO</span>
-                </a>
-            </li>
-        <li>
-            <a href="presupuesto/plist">
-                <div class='entypo-linkedin'><i class="fas fa-comments-dollar"></i></div>
-                <span>PRESUPUESTO</span>
-            </a>
-        </li>
-        <li>
-            <a href="empresa">
-                <div class='entypo-linkedin'><i class="fas fa-building"></i></div>
-                <span>EMPRESA</span>
-            </a>
-        </li>
-        <li>
-            <a href="producto/plist">
-                <div class='entypo-linkedin'><i class="fas fa-box"></i></div>
-                <span>ARTÍCULO</span>
-            </a>
-        </li>
-    </ul>
-</section>
-
-<div class="wrapper" id="fondo" ng-show="!ocultar">
-    <div class="container" id="formlogin">
-
-
-        <form class="form" name="userForm">
-            <h1 id="titulo">Login</h1>
-            <br>
-            <input type="text" placeholder="Usuario" id="login" name="login" ng-model="login" ng-required="true">
-            <input type="password" placeholder="Contraseña" id="password" name="password" ng-model="password"
-                ng-required="true">
-            <button ng-click="validar()" type="button" ng-disabled="userForm.$invalid" id="login-button">Login</button>
-        </form>
+<div class="big-button">
+    <div class="big-button__title">
+      EMPIEZA
+    </div>
+    <div class="big-button__icon">
+      <i class="fas fa-sign-in-alt"></i>
+    </div>
+  </div>
+  
+  <div class="big-button">
+    <div class="big-button__title">
+      TERMINA
+    </div>
+        <div class="big-button__icon">
+          <i class="fas fa-sign-out-alt"></i>
+      </div>
+  </div>
+  <div class="container-fluid">
+    <div class="table-responsive-md">
+        <table class="datatable table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>TRABAJADOR</th>
+                    <th>TARJETA</th>
+                    <th>FECHA</th>
+                    <th>HORA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="gradeX" ng-repeat="fila in ajaxDataCliente">
+                    <td>{{fila.id}}</td>
+                    <td>{{fila.codigo}}</td>
+                    <td>{{fila.nif}}</td>
+                    <td>{{fila.nombre}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>

@@ -1,18 +1,13 @@
 'use strict';
 
-var SuportWeb4All = angular.module('MyApp', [
+var fichador = angular.module('MyApp', [
     'ngRoute',
     'services',
     'commonControllers',
     'loginControllers',
-    'empresaControllers',
     'moduleComponent',
     'ngMaterial',
-    'Directives',
-    'clienteControllers',
-    'productoControllers',
-    'presupuestoControllers',
-    'facturaControllers'
+    'Directives'
 
 ]).config(function ($mdDateLocaleProvider) {
     // Example of a Spanish localization.
@@ -37,16 +32,10 @@ var SuportWeb4All = angular.module('MyApp', [
 var moduleCommon = angular.module('commonControllers', []);
 var moduleService = angular.module('services', []);
 var moduleTipousuario = angular.module('tipousuarioControllers', []);
-var moduleCliente = angular.module('clienteControllers', []);
-var moduleProducto = angular.module('productoControllers', []);
-var moduleFactura = angular.module('facturaControllers', []);
-var modulePresupuesto = angular.module('presupuestoControllers', []);
 var moduleTipoproducto = angular.module('tipoproductoControllers', []);
-var moduleCarrito = angular.module('carritoControllers', []);
 var moduleLinea = angular.module('lineaControllers', []);
 var moduleComponent = angular.module('moduleComponent', []);
 
 var moduleLogin = angular.module('loginControllers', []);
-var moduleEmpresa = angular.module('empresaControllers', []);
 
 var moduloDirectivas = angular.module('Directives', []);
