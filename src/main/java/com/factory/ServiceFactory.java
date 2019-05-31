@@ -1,6 +1,7 @@
 package com.factory;
 
 import com.bean.ReplyBean;
+import com.service.HistoricoService;
 import com.service.TrabajadorService;
 import com.service.UsuarioService;
 import javax.servlet.http.HttpServletRequest;
@@ -38,6 +39,23 @@ public class ServiceFactory {
                         oReplyBean = oClienteService.get();
                         break;
 
+                    default:
+                        oReplyBean = new ReplyBean(500, "Operation doesn't exist");
+                        break;
+                }
+                break;
+            case "historico":
+                HistoricoService oHistoricoService = new HistoricoService(oRequest);
+                switch (op) {
+                    case "get":
+                        oReplyBean = oHistoricoService.get();
+                        break;
+                    case "create":
+                        oReplyBean = oHistoricoService.create();
+                        break;
+                    case "getpage":
+                        oReplyBean = oHistoricoService.getpage();
+                        break;
                     default:
                         oReplyBean = new ReplyBean(500, "Operation doesn't exist");
                         break;

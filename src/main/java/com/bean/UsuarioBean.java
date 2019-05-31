@@ -39,6 +39,9 @@ public class UsuarioBean {
     private Integer portCli;
     @Expose
     private String databaseCli;
+    @Expose
+    private Integer trabajador;
+    
 
     public int getId() {
         return id;
@@ -112,6 +115,14 @@ public class UsuarioBean {
         this.databaseCli = databaseCli;
     }
 
+    public Integer getTrabajador() {
+        return trabajador;
+    }
+
+    public void setTrabajador(Integer trabajador) {
+        this.trabajador = trabajador;
+    }
+
     public UsuarioBean fill(ResultSet oResultSet, Connection oConnection) throws Exception {
         this.setId(oResultSet.getInt("id"));
         this.setLogin(oResultSet.getString("login"));
@@ -122,6 +133,7 @@ public class UsuarioBean {
         this.setHostCli(oResultSet.getString("hostcli"));
         this.setPortCli(oResultSet.getInt("portcli"));
         this.setDatabaseCli(oResultSet.getString("databasecli"));
+        this.setTrabajador(oResultSet.getInt("trabajador"));
         return this;
     }
 

@@ -14,7 +14,10 @@ import com.dao.HistoricoDao;
 import com.dao.TrabajadorDao;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.helper.ParameterCook;
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -97,5 +100,38 @@ public class HistoricoService {
         }
 
         return oReplyBean;
+    }
+    public ReplyBean getpage() throws Exception {
+        ReplyBean oReplyBean;
+        Connection oConnection = null;
+        UsuarioBean oUsuarioBean = null;
+        HikariConnectionForUser oHikariConectio = new HikariConnectionForUser();
+        try {
+            Integer trabajador = Integer.parseInt(oRequest.getParameter("trabajador"));
+
+            oUsuarioBean = (UsuarioBean) oRequest.getSession().getAttribute("user");
+
+            usuario = oUsuarioBean.getLoginCli();
+            password = oUsuarioBean.getPassCli();
+            conexion = oUsuarioBean.newConnectionClient();
+
+            oConnection = (Connection) oHikariConectio.newConnectionParams(usuario, password, conexion);
+
+            HistoricoDao oHistoricoDao = new HistoricoDao(oConnection, ob);
+
+            ArrayList<HistoricoBean> alHistoricoBean = oHistoricoDao.getpage(1000, 1,trabajador);
+            Gson oGson = new Gson();
+            oReplyBean = new ReplyBean(200, oGson.toJson(alHistoricoBean));
+        } catch (Exception ex) {
+            throw new Exception("ERROR: Service level: getpage method: " + ob + " object", ex);
+        } finally {
+            if (oConnection != null) {
+                oConnection.close();
+            }
+            oHikariConectio.disposeConnection();
+        }
+
+        return oReplyBean;
+
     }
 }
