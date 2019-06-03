@@ -28,7 +28,7 @@ public class TrabajadorDao {
     }
 
     public TrabajadorBean get(int id, Integer expand) throws Exception {
-        String strSQL = "SELECT * FROM " + ob + " WHERE clicodigo = ? and id_ejercicio = ? ";
+        String strSQL = "SELECT * FROM " + ob + " WHERE codigo = ? ";
         TrabajadorBean oTrabajadorBean;
         ResultSet oResultSet = null;
         PreparedStatement oPreparedStatement = null;

@@ -4,7 +4,7 @@
 
     <groupId>net.carlosgrau</groupId>
     <artifactId>fichadorServer</artifactId>
-    <version>0.0.1</version>
+    <version>0.8</version>
     <packaging>war</packaging>
 
     <name>fichadorServer</name>

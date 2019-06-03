@@ -7,7 +7,6 @@ package com.dao;
 
 import com.bean.HistoricoBean;
 import com.bean.TrabajadorBean;
-import com.helper.SqlBuilder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -95,6 +94,7 @@ public class HistoricoDao {
             PreparedStatement oPreparedStatement = null;
             try {
                 oPreparedStatement = oConnection.prepareStatement(strSQL);
+                oPreparedStatement.setInt(1, trabajador);
                 oResultSet = oPreparedStatement.executeQuery();
                 alHistoricoBean = new ArrayList<HistoricoBean>();
                 while (oResultSet.next()) {

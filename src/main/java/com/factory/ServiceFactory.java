@@ -32,13 +32,12 @@ public class ServiceFactory {
                         break;
                 }
                 break;
-            case "trabajador":
+            case "trabajadores":
                 TrabajadorService oClienteService = new TrabajadorService(oRequest);
                 switch (op) {
                     case "get":
                         oReplyBean = oClienteService.get();
                         break;
-
                     default:
                         oReplyBean = new ReplyBean(500, "Operation doesn't exist");
                         break;
@@ -50,7 +49,7 @@ public class ServiceFactory {
                     case "get":
                         oReplyBean = oHistoricoService.get();
                         break;
-                    case "create":
+                    case "grabar":
                         oReplyBean = oHistoricoService.create();
                         break;
                     case "getpage":

@@ -12,6 +12,8 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  *
@@ -28,12 +30,13 @@ public class HistoricoBean {
     @Expose
     private String estado;
     @Expose
+    private String eliminado;
+    @Expose
     private String tarjeta;
     @Expose
     private Integer id_trabajador;
     @Expose
     private TrabajadorBean objTrabajador;
-    
 
     public int getId() {
         return id;
@@ -67,6 +70,14 @@ public class HistoricoBean {
         this.estado = estado;
     }
 
+    public String getEliminado() {
+        return eliminado;
+    }
+
+    public void setEliminado(String eliminado) {
+        this.eliminado = eliminado;
+    }
+
     public String getTarjeta() {
         return tarjeta;
     }
@@ -91,19 +102,18 @@ public class HistoricoBean {
         this.objTrabajador = objTrabajador;
     }
 
-
-
     public HistoricoBean fill(ResultSet oResultSet, Connection oConnection, Integer expand) throws Exception {
         this.setId(oResultSet.getInt("id_historico"));
         this.setFecha(oResultSet.getDate("fecha"));
         this.setHora(oResultSet.getTime("hora"));
         this.setEstado(oResultSet.getString("estado"));
+        this.setEliminado(oResultSet.getString("eliminado"));
         this.setTarjeta(oResultSet.getString("tarjeta"));
         this.setId_trabajador(oResultSet.getInt("id_trabajador"));
 
         if (expand > 0) {
-            TrabajadorDao oTrabajadorDao = new TrabajadorDao(oConnection, "trabajador");
-            this.setObjTrabajador(oTrabajadorDao.get(oResultSet.getInt("id_trabajador"),expand - 1));
+            TrabajadorDao oTrabajadorDao = new TrabajadorDao(oConnection, "trabajadores");
+            this.setObjTrabajador(oTrabajadorDao.get(oResultSet.getInt("id_trabajador"), expand - 1));
         }
         return this;
     }
@@ -114,21 +124,20 @@ public class HistoricoBean {
         strColumns += "fecha,";
         strColumns += "hora,";
         strColumns += "estado,";
+        strColumns += "eliminado,";
         strColumns += "tarjeta,";
         strColumns += "id_trabajador";
-
-
-
         return strColumns;
     }
 
     public String getValues() {
         String strColumns = "";
         strColumns += "null,";
-        strColumns += fecha + ",";
-        strColumns += hora + ",";
-        strColumns += EncodingHelper.quotate(estado) + ",";
-        strColumns += EncodingHelper.quotate(tarjeta)+ ",";
+        strColumns += EncodingHelper.quotate(Date.valueOf(LocalDate.now()).toString()) + ",";
+        strColumns += EncodingHelper.quotate(Time.valueOf(LocalTime.now()).toString()) + ",";
+        strColumns += EncodingHelper.quotate("A") + ",";
+        strColumns += EncodingHelper.quotate("N") + ",";
+        strColumns += EncodingHelper.quotate(tarjeta) + ",";
         strColumns += id_trabajador;
         return strColumns;
     }
@@ -139,6 +148,7 @@ public class HistoricoBean {
         strPairs += "fecha=" + fecha + ",";
         strPairs += "hora=" + hora + ",";
         strPairs += "estado=" + EncodingHelper.quotate(estado) + ",";
+        strPairs += "eliminado=" + EncodingHelper.quotate(eliminado) + ",";
         strPairs += "tarjeta=" + EncodingHelper.quotate(tarjeta) + ",";
         strPairs += "id_trabajador=" + id_trabajador;
         return strPairs;
